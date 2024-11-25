@@ -42,6 +42,11 @@ prompt: $prefix
 STDIN_CONTEXT
 )
 
+    # FYI! if want to provide guidance, just add an echo first:
+    # echo dirs in tree: && <PAUSE>
+    #  =>   echo dirs in tree: && find . -type d
+    # OMG and this is like my ask-openai but as you type!
+
     # I could ask it to not include the initial prompt, would have to investigate if that matters beyond output token $
     #   it is somewhat nice to know when the prompt is not there that its a failure response, like it went off and suggested some crazy crap or added markdown padding
     #   so for now leave this as a mini guardrail
