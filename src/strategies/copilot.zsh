@@ -26,8 +26,9 @@ _zsh_autosuggest_strategy_copilot() {
         ask_service=$(fish -c 'echo $ask_service')
     fi
 
-    # ! TODO wire up to copilot codex completions
-    # TODO wire up to copilot chat completions
+    # PRN wire up to copilot codex completions
+    # PRN wire up to copilot chat completions (via my ask-openai single.py so I can use anywhere)
+    # PRN wire up websocket to supermaven?! ask them if they're cool with this and can maybe supply me with a test env / or easier way to connect without duct tape to the API key (i.e. can I get an API key for testing)
     # TODO add context to prompt, i.e. recent command history
     #    I suspect recent history will make it easier to build commands from a short prefix, dotnet build, do => dotnet run!
     #    later, try PWD/list files in PWD or tree with limits
