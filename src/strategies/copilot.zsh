@@ -41,6 +41,14 @@ prompt: $prefix
 STDIN_CONTEXT
 )
 
+    # I could ask it to not include the initial prompt, would have to investigate if that matters beyond output token $
+    #   it is somewhat nice to know when the prompt is not there that its a failure response, like it went off and suggested some crazy crap or added markdown padding
+    #   so for now leave this as a mini guardrail
+    if [[ $response != $prefix* ]]; then
+        # info to troubleshoot what went wrong
+        typeset -g suggestion="${prefix} FAIL - response must start with prefix, response: $response, ask_service: $ask_service"
+        return 1
+    fi
 
 	# Give the first history item matching the pattern as the suggestion
 	# - (r) subscript flag makes the pattern match on values
