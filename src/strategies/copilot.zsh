@@ -19,9 +19,22 @@ _zsh_autosuggest_strategy_copilot() {
 		pattern="($pattern)~($ZSH_AUTOSUGGEST_HISTORY_IGNORE)"
 	fi
 
+
+	_python3="${WESCONFIG_DOTFILES}/.venv/bin/python3"
+	_single_py="${WESCONFIG_DOTFILES}/zsh/universals/3-last/ask-openai/single.py"
+	response=$( $_python3 $_single_py 2>&1 \
+            <<STDIN_CONTEXT
+env: zsh on $(uname)
+task: you are a strategy in zsh-autosuggetions, to complete the following prompt, your response must repeate the prompt verbatim and then the rest of the command that you are suggesting.
+prompt: $prefix
+STDIN_CONTEXT
+)
+
+
 	# Give the first history item matching the pattern as the suggestion
 	# - (r) subscript flag makes the pattern match on values
-	typeset -g suggestion="$prefix, hey, fuck a dick"
+	# typeset -g suggestion="${prefix}${response}"
+	typeset -g suggestion="${response}"
 }
 
 # FYI supermaven (mitm capt => shows one websocket connection with messages tab in body... also has simple api key... would be super easy to replicate messages)
